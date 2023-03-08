@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Bootstrap demo</title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<div class="text-center">
+  <h1>Владик</h1>
+  <div class="position-relative">
+    <img class="img-fluid" id="change_image" src="img/img.png">
+    <div id="explosion"></div>
+  </div>
+  <div class="text-center">
+    <button class="btn btn-success" onclick="myFOO()" type="button">ВДУТЬ КРАСАВЦУ</button>
+  </div>
+  <div class="my-5" id="casino">
+
+    <h2 class="mb-3">Казино</h2>
+    <p>Выпали числа:</p>
+    <div class="d-flex justify-content-center mb-3">
+      <span class="casino-number" id="casino-number-1"></span>
+      <span class="casino-number" id="casino-number-2"></span>
+      <span class="casino-number" id="casino-number-3"></span>
+    </div>
+    <button id="casinoBut" class="btn btn-primary" onclick="spinCasino()">Крутить</button>
+  </div>
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  function spinCasino() {
+
+      // Генерируем случайные числа от 0 до 9
+      var num1 = Math.floor(Math.random() * 6);
+      var num2 = Math.floor(Math.random() * 6);
+      var num3 = Math.floor(Math.random() * 6);
+
+      // Записываем числа в соответствующие элементы
+      document.getElementById("casino-number-1").textContent = num1;
+      document.getElementById("casino-number-2").textContent = num2;
+      document.getElementById("casino-number-3").textContent = num3;
+
+      // Проверяем, все ли числа одинаковые
+      if (num1 == num2 && num2 == num3) {
+        // Добавляем класс win к каждому числу
+        var numbers = document.getElementsByClassName("casino-number");
+        for (var i = 0; i < numbers.length; i++) {
+          numbers[i].classList.add("win");
+        }
+
+        var audio1 = new Audio();
+        audio1.preload = 'auto';
+        audio1.src = '/img/fireworks-sound.mp3';
+        audio1.play();
+        change_image.src = 'img/' + 'gif.gif';
+        document.getElementById("casinoBut").hidden = true;
+
+      }
+    }
+
+
+</script>
+
+<script>
+
+  var theNum = "0";
+  let arr = ["img", "img_1", "img_2"];
+
+  function myFOO() {
+    document.getElementById("casinoBut").hidden = false;
+    var audio = new Audio();
+    audio.preload = 'auto';
+    audio.src = '/img/sai.mp3';
+    audio.play();
+    if (theNum == arr.length) {
+      theNum = "0";
+    }
+    change_image.src = 'img/' + arr[theNum] + '.png';
+    theNum++;
+    var img = document.getElementById("change_image");
+    img.classList.add("animated-image");
+    setTimeout(function () {
+      img.classList.remove("animated-image");
+    }, 500);
+    // Добавляем класс анимации взрыва на фон картинки
+    $('#explosion').addClass('animated explode');
+    // Удаляем класс анимации взрыва через 1 секунду (длительность анимации)
+    setTimeout(function () {
+      $('#explosion').removeClass('animated explode');
+    }, 500);
+
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/firework.js/dist/firework.min.js"></script>
+</body>
+</html>
