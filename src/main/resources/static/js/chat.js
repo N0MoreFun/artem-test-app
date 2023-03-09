@@ -1,3 +1,5 @@
+
+
 $(function () {
     let auth = false;
     function hideChat(boolean) {
@@ -99,7 +101,7 @@ $(function () {
 
         let text = $('.u-input-rectangle').val()
         $('.u-input-rectangle').val("")
-        $.post("/send", {textMessage: text.replace(/[^a-zA-ZР-пр-џ0-9\s]/gi,'')}, function (response) {
+        $.post("/send", {textMessage: text}, function (response) {
         })
         updateMessageList()
         setTimeout(() => {
