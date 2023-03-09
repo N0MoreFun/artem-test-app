@@ -24,13 +24,17 @@ $(function () {
         $.get("/init", {}, function (response) {
 
             if (response) {
+
                 hideChat(false)
+
 
             }
             if (!response) {
+
                 hideChat(true)
             }
         })
+
     })
 
     function updateUserList(){
@@ -73,8 +77,10 @@ $(function () {
 
 
     $(function (){
-        setInterval( updateMessageList,1000);
-        setInterval(updateUserList,5000)
+
+        updateMessageList()
+        setInterval( updateMessageList,30000);
+
     })
     $('.reg-button').on('click', function () {
         let nameF = $('.nameF').val()
@@ -82,8 +88,10 @@ $(function () {
         $.post("/reg", {name: nameF, pass: passwordF}, function (response) {
             if (response) {
                 hideChat(false)
+                updateUserList()
             }
         })
+
 
     })
     $('.log-button').on('click', function () {
@@ -92,8 +100,10 @@ $(function () {
         $.get("/login", {name: nameF, pass: passwordF}, function (response) {
             if (response) {
                 hideChat(false)
+                updateUserList()
             } else alert("Login ili parol ne werni")
         })
+
 
     })
 
@@ -103,12 +113,18 @@ $(function () {
         $('.u-input-rectangle').val("")
         $.post("/send", {textMessage: text}, function (response) {
         })
-        updateMessageList()
+
         setTimeout(() => {
+            updateMessageList()
             $(".u-border-3")[1].scrollTo(0,10000)
         }, 500);
 
     })
-
+    $('.buttonUpdate').on('click', function () {
+        updateMessageList()
+        updateUserList()
+        setTimeout(() => {
+        $(".u-border-3")[1].scrollTo(0,10000)
+    }, 500); })
 
 })
