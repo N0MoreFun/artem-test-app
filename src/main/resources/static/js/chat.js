@@ -69,6 +69,7 @@ $(function () {
         }
     }
 
+
     $(function (){
         setInterval( updateMessageList,1000);
         setInterval(updateUserList,5000)
@@ -98,10 +99,13 @@ $(function () {
 
         let text = $('.u-input-rectangle').val()
         $('.u-input-rectangle').val("")
-        $.post("/send", {textMessage: text}, function (response) {
+        $.post("/send", {textMessage: text.replace(/[^a-zA-ZР-пр-џ0-9\s]/gi,'')}, function (response) {
         })
         updateMessageList()
-        $(".u-border-3")[0].scrollTo(0,10000)
+        setTimeout(() => {
+            $(".u-border-3")[1].scrollTo(0,10000)
+        }, 500);
+
     })
 
 

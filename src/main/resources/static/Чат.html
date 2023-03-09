@@ -43,11 +43,11 @@
 
             <p>
                 <label for="name">Имя <span></span></label>
-                <input class="nameF" id="name" minlength="3" name="name" required type="text">
+                <input maxlength="16" class="nameF" id="name" minlength="3" name="name" required type="text">
             </p>
             <p>
                 <label for="password">Пароль <span></span></label>
-                <input class="passwordF" id="password" name="password" required type="password">
+                <input maxlength="16" class="passwordF" id="password" name="password" required type="password">
             </p>
             <button class="reg-button u-btn">Регистрация</button>
             <button class="log-button u-btn">Вход</button>
@@ -55,22 +55,22 @@
 
         </div>
 
-
-        <div class="u-border-3 u-border-palette-1-base u-container-style u-group u-white u-group-1">
-            <div class="u-container-layout u-container-layout-1" id="chat">
-            </div>
-        </div>
         <div class="u-border-3 u-border-palette-1-base u-container-style u-group u-white u-group-2">
             <div ID="userList" class="u-container-layout u-container-layout-2">
                 <h4>Пользователи чата:</h4>
             </div>
         </div>
+        <div class="u-border-3 u-border-palette-1-base u-container-style u-group u-white u-group-1">
+            <div class="u-container-layout u-container-layout-1" id="chat">
+            </div>
+        </div>
+
         <div class="u-form u-form-1">
 
             <div class="u-form-group u-form-message u-label-none u-form-group-1">
-                <textarea class="u-input u-input-rectangle" cols="50" id="message-6797" name="message"
+                <input class="u-input u-input-rectangle"    maxlength="256"
                           placeholder="Сообщение тут пиши"
-                          required="" rows="2"></textarea>
+                          pattern="^[А-Яа-яЁё\s]+$"></input>
             </div>
             <div class="u-align-left u-form-group u-form-submit u-label-none u-form-group-2" style="margin-top: 20px;">
                 <button class="buttonSend">Отправить</button>
