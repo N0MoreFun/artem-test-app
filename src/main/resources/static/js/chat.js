@@ -79,7 +79,6 @@ $(function () {
     $(function (){
 
         updateMessageList()
-        setInterval( updateMessageList,30000);
 
     })
     $('.reg-button').on('click', function () {
